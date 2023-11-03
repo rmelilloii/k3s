@@ -1,0 +1,10 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: Request
+  resources:
+  - group: ""
+    resources: ["pods", "services", "configmaps", "secrets", "deployments", "statefulsets", "ingresses", "jobs", "cronjobs"]
+- level: RequestResponse
+  user: ""
+  verbs: ["exec", "attach", "port-forward", "create", "apply", "delete", "edit", "proxy", "run", "scale", "expose", "rollou", "config", "label", "annotate"]
