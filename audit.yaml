@@ -4,13 +4,26 @@ kind: Policy
 omitStages:
   - "RequestReceived"
 rules:
+  - level: RequestResponse
+    user: ""
+    verbs: ["exec", "attach", "port-forward", "create", "apply", "delete", "edit", "proxy", "run", "scale", "expose", "rollout", "config", "label", "annotate"]
+
+  - level: RequestResponse
+    resources:
+    - group: "" # core API group
+      resources: ["pods", "services", "configmaps", "secrets", "deployments", "statefulsets", "ingresses", "jobs", "cronjobs"]
+
   - level: None
     resources:
     - group: ""
       resources: ["pods/log", "pods/status"]
 
   - level: None
-    users: ["system:admin"]
+    users: ["system:kube-proxy"]
+    verbs: ["watch"]
+    resources:
+    - group: "" # core API group
+      resources: ["endpoints", "services"]
 
   - level: None
     userGroups: ["system:authenticated"]
@@ -25,12 +38,3 @@ rules:
 
   - level: None
     namespaces: ["kube-system"]
-
-  - level: RequestResponse
-    user: ""
-    verbs: ["exec", "attach", "port-forward", "create", "apply", "delete", "edit", "proxy", "run", "scale", "expose", "rollout", "config", "label", "annotate"]
-
-  - level: RequestResponse
-    resources:
-    - group: "" # core API group
-      resources: ["pods", "services", "configmaps", "secrets", "deployments", "statefulsets", "ingresses", "jobs", "cronjobs"]
