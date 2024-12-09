@@ -1,6 +1,0 @@
-etcd-s3: true
-etcd-s3-endpoint: s3.wasabisys.com
-etcd-s3-region: us-east-1
-etcd-s3-access-key: 2LIIT6HXZ89BOI7SEEDY
-etcd-s3-secret-key: Hh6A7ZacnybOzCSFEnoKFS0hiY9fdSLmabkNpyGO
-etcd-s3-bucket: cc-us-prod-etcd
